@@ -1,0 +1,7 @@
+/build/
+/Debug/
+.cproject
+.project
+/.settings/
+
+notebooks/.ipynb_checkpoints/
