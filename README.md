@@ -20,7 +20,7 @@ A cost function was implemented that had a bias towards staying in the existing 
 
 [//]: # (Written by Nick Hortovanyi August 14th 2017)
 
-##Reflection
+## Reflection
 I spent significant time, before the walkthrough video was released, creating another solution. This used the behaviour planning and Jerk Minimising Trajectory approaches in the lessons. Code can be found on github [here](https://github.com/hortovanyi/CarND-Path-Planning-Project-JMT). I couldn't quite get all the components working together. I mainly had issues generating jerk free trajectories in global coordinates from a pipeline of freenet coordinates even after creating waypoint splines. At some point I may review this approach again. I found it somewhat difficult to debug using a simulator. In hindsight if I started it again, more focus would be placed into unit test cases.
 
 The final approach I used to submit the project for review was based on the walkthrough video. I added some lane speed & nearest approach calculations to provide input for a basic cost function as described above. 
