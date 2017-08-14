@@ -2,7 +2,7 @@ Path Planning
 ===
 In this Path Planning project, we guide a vehicle to drive down a highway in a simulator. The vehicle must do so, without collision, staying in the right three lanes, without speeding, minimising acceleration & jerk and effectively staying within its current lane, unless overtaking.
 
-![lane change manoeuvre] ( https://raw.githubusercontent.com/hortovanyi/CarND-Path-Planning-Project/master/output/highway_driving.png)
+![lane change manoeuvre](https://raw.githubusercontent.com/hortovanyi/CarND-Path-Planning-Project/master/output/highway_driving.png)
 
 [//]: # (Written by Nick Hortovanyi August 14th 2017)
 ## Valid Trajectories 
