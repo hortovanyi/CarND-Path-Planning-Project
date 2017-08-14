@@ -225,9 +225,9 @@ int main() {
   vector<double> map_waypoints_dy;
 
   // Waypoint map to read from
-// TODO change before submitting
-//  string map_file_ = "../data/highway_map.csv";
-  string map_file_ = "../../data/highway_map.csv";
+
+  string map_file_ = "../data/highway_map.csv";
+//  string map_file_ = "../../data/highway_map.csv";
   // The max s value before wrapping around the track back to 0
   double max_s = 6945.554;
 
@@ -261,7 +261,7 @@ int main() {
 
   // have a reference velocity to target
   double ref_vel = 0; // mph
-  double max_vel = 49.5;
+  double max_vel = 49.75;
 
   h.onMessage(
       [&lane, &ref_vel, &max_vel, &map_waypoints_x,&map_waypoints_y,&map_waypoints_s,&map_waypoints_dx,&map_waypoints_dy]
@@ -318,7 +318,7 @@ int main() {
               for (int i = 0; i < sensor_fusion.size(); i++) {
                 float other_d = sensor_fusion[i][6];
                 int other_lane = LaneFrenet(other_d);
-                cout << " other d " << other_d << "other_lane " << other_lane;
+//                cout << " other d " << other_d << "other_lane " << other_lane;
                 if (other_lane < 0 || other_lane > 2)
                    continue;
                 assert(other_lane >= 0 && other_lane <=2 );
@@ -354,7 +354,7 @@ int main() {
                   continue;
 
                 int ego_lane = LaneFrenet(end_path_d);
-                cout << "ego d " << end_path_d << " lane "<< ego_lane << " other d " << other_d << " lane " << other_lane << endl;
+//                cout << "ego d " << end_path_d << " lane "<< ego_lane << " other d " << other_d << " lane " << other_lane << endl;
                 if (lane == other_lane ) {
                   double vx = sensor_fusion[i][3];
                   double vy = sensor_fusion[i][4];
@@ -373,8 +373,6 @@ int main() {
               }
 
               if (too_close) {
-
-
                 vector<int> possible_lanes;
                 if (lane == 0)
                   possible_lanes = {0,1};
@@ -400,10 +398,12 @@ int main() {
                   auto ids = SensorFussionLaneIds(check_lane,sensor_fusion);
                   double nearest = NearestApproach(ids, sensor_fusion, .02*prev_size, car_s);
 
-                  if (nearest < 10)
+                  double buffer = 10;
+
+                  if (nearest < buffer)
                     cost+=pow(10,5);
 
-                  cost += Normalise(2*10/nearest) * 1000;
+                  cost += Normalise(2*buffer/nearest) * 1000;
 
                   if (cost < best_cost) {
                     best_lane = check_lane;
