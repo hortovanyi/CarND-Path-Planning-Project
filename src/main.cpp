@@ -255,7 +255,6 @@ int main() {
 
   cout << "loaded " << map_waypoints_x.size() << " waypoints" << endl;
 
-
   // start in lane 1
   int lane = 1;
 

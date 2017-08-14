@@ -1,3 +1,34 @@
+Path Planning
+===
+In this Path Planning project, we guide a vehicle to drive down a highway in a simulator. The vehicle must do so, without collision, staying in the right three lanes, without speeding, minimising acceleration & jerk and effectively staying within its current lane, unless overtaking.
+
+![lane change manoeuvre] ( https://raw.githubusercontent.com/hortovanyi/CarND-Path-Planning-Project/master/output/highway_driving.png)
+
+[//]: # (Written by Nick Hortovanyi August 14th 2017)
+## Valid Trajectories 
+The program was able to drive for the simulator for over an hour without incident. After that point I terminated the project. Occasionally there are incidents when you turn into a lane and your vehicle may be side swiped or rear ended. This seemed to be an issue with the robotic cars.
+
+The speed limit was set at 50 MPH. Above that causes a violation. In the program, speed was set slight below at 47.5 MPH.
+
+The spline technique supplied in the walkthrough was effective at ensuring max acceleration in m/s/s and Jerk in m/s/s/s are not exceeded.
+
+The car in normal driving does not collide with other vehicles. Whilst in a lane, it tries to match either the speed of the vehicle in front or the average for the lane. Whichever is lowest.
+
+The vehicle stay consistently in the centre of each 4 meter wide lane. Frenet coordinates greatly assisted with this.
+
+A cost function was implemented that had a bias towards staying in the existing lane, matching the average lane speed, avoiding collisions and having a buffer for other vehicles in the proposed lanes. If the best lane found, was still the existing lane with a closely vehicle, then speed was adjusted to match.
+
+[//]: # (Written by Nick Hortovanyi August 14th 2017)
+
+##Reflection
+I spent significant time, before the walkthrough video was released, creating another solution. This used the behaviour planning and Jerk Minimising Trajectory approaches in the lessons. Code can be found on github [here](https://github.com/hortovanyi/CarND-Path-Planning-Project-JMT). I couldn't quite get all the components working together. I mainly had issues generating jerk free trajectories in global coordinates from a pipeline of freenet coordinates even after creating waypoint splines. At some point I may review this approach again. I found it somewhat difficult to debug using a simulator. In hindsight if I started it again, more focus would be placed into unit test cases.
+
+The final approach I used to submit the project for review was based on the walkthrough video. I added some lane speed & nearest approach calculations to provide input for a basic cost function as described above. 
+
+I really like the spline approach, using coordinates converted into car space and sampling to create a smooth trajectory. The [code](https://github.com/hortovanyi/CarND-Path-Planning-Project) for this project although not the neatest or elegant, is able to effectively drive the vehicle in the simulator to meet requirements. 
+
+[//]: # (Written by Nick Hortovanyi August 14th 2017)
+
 # CarND-Path-Planning-Project
 Self-Driving Car Engineer Nanodegree Program
    
